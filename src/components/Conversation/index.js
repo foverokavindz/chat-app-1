@@ -3,6 +3,7 @@ import { useTheme } from '@mui/material/styles';
 
 import { Header } from './Header';
 import Footer from './Footer';
+import Message from './Message';
 
 const Conversation = () => {
   const theme = useTheme();
@@ -17,11 +18,15 @@ const Conversation = () => {
             width: '100%',
             backgroundColor:
               theme.palette.mode === 'light'
-                ? '#F8faff'
+                ? '#EFF6FF'
                 : theme.palette.background.default,
+            boxShadow: '0px 0px 2px rgba(0,0,0,0.25)',
             flexGrow: 1,
           }}
-        ></Box>
+          overflow={'auto'}
+        >
+          <Message />
+        </Box>
         {/* Chat Footer */}
         <Footer />
       </Stack>
