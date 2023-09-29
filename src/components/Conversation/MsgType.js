@@ -5,19 +5,27 @@ import {
   Box,
   Link,
   IconButton,
+  Menu,
+  MenuItem,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { DownloadSimple, Image } from 'phosphor-react';
+import { DotsThreeVertical, DownloadSimple, Image } from 'phosphor-react';
+import { Message_options } from '../../data/index';
+import { useState } from 'react';
 
 const DocMsg = ({ el }) => {
   const theme = useTheme();
   return (
-    <Stack direction={'row'} justifyContent={el.incoming ? 'start' : 'end'}>
+    <Stack
+      direction={'row'}
+      justifyContent={el.incoming ? 'start' : 'end'}
+      alignItems={'start'}
+    >
       <Box
         p={1.5}
         sx={{
           backgroundColor: el.incoming
-            ? theme.palette.background.default
+            ? theme.palette.background.paper
             : theme.palette.primary.main,
           borderRadius: 1.5,
           width: 'max-content', // content eke max width ekt ynna
@@ -30,7 +38,7 @@ const DocMsg = ({ el }) => {
             spacing={3}
             alignItems={'center'}
             sx={{
-              backgroundColor: theme.palatte.background.paper,
+              backgroundColor: theme.palette.background.paper,
               borderRadius: 1,
             }}
           >
@@ -48,6 +56,7 @@ const DocMsg = ({ el }) => {
           </Typography>
         </Stack>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 };
@@ -55,7 +64,11 @@ const DocMsg = ({ el }) => {
 const LinkMsg = ({ el }) => {
   const theme = useTheme();
   return (
-    <Stack direction={'row'} justifyContent={el.incoming ? 'start' : 'end'}>
+    <Stack
+      direction={'row'}
+      justifyContent={el.incoming ? 'start' : 'end'}
+      alignItems={'start'}
+    >
       <Box
         p={0}
         sx={{
@@ -101,6 +114,7 @@ const LinkMsg = ({ el }) => {
           </Stack>
         </Stack>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 };
@@ -109,7 +123,11 @@ const ReplyMsg = ({ el }) => {
   const theme = useTheme();
 
   return (
-    <Stack direction={'row'} justifyContent={el.incoming ? 'start' : 'end'}>
+    <Stack
+      direction={'row'}
+      justifyContent={el.incoming ? 'start' : 'end'}
+      alignItems={'start'}
+    >
       <Box
         p={1.5}
         sx={{
@@ -143,6 +161,7 @@ const ReplyMsg = ({ el }) => {
           </Typography>
         </Stack>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 };
@@ -151,7 +170,11 @@ const MediaMsg = ({ el }) => {
   const theme = useTheme();
 
   return (
-    <Stack direction={'row'} justifyContent={el.incoming ? 'start' : 'end'}>
+    <Stack
+      direction={'row'}
+      justifyContent={el.incoming ? 'start' : 'end'}
+      alignItems={'start'}
+    >
       <Box
         p={1.5}
         sx={{
@@ -176,6 +199,7 @@ const MediaMsg = ({ el }) => {
           </Typography>
         </Stack>
       </Box>
+      <MessageOptions />
     </Stack>
   );
 };
@@ -183,7 +207,11 @@ const MediaMsg = ({ el }) => {
 const TextMsg = ({ el }) => {
   const theme = useTheme();
   return (
-    <Stack direction={'row'} justifyContent={el.incoming ? 'start' : 'end'}>
+    <Stack
+      direction={'row'}
+      justifyContent={el.incoming ? 'start' : 'end'}
+      alignItems={'start'}
+    >
       <Box
         p={1.5}
         sx={{
@@ -201,6 +229,9 @@ const TextMsg = ({ el }) => {
           {el.message}
         </Typography>
       </Box>
+
+      {/* options button */}
+      <MessageOptions />
     </Stack>
   );
 };
@@ -216,6 +247,51 @@ const Timeline = ({ el }) => {
       <Divider width="46%" />
       <Divider />
     </Stack>
+  );
+};
+
+const MessageOptions = () => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  return (
+    <>
+      <IconButton
+        id="positioned-button"
+        aria-controls={open ? 'positioned-button' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
+        <DotsThreeVertical />
+      </IconButton>
+      <Menu
+        id="positioned-button"
+        aria-labelledby="positioned-button"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+      >
+        <Stack spacing={1} px={1}>
+          {Message_options.map((el) => (
+            <MenuItem onClick={handleClick}>{el.title}</MenuItem>
+          ))}
+        </Stack>
+      </Menu>
+    </>
   );
 };
 

@@ -1,17 +1,36 @@
 import React, { useState } from 'react';
-import { Box, Stack, IconButton, Divider, Avatar } from '@mui/material';
+import {
+  Box,
+  Stack,
+  IconButton,
+  Divider,
+  Avatar,
+  Menu,
+  MenuItem,
+} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Nav_Buttons } from '../../data';
+import { Nav_Buttons, Profile_Menu } from '../../data';
 import useSettings from '../../hooks/useSettings';
 import AntSwitch from '../../components/AntSwitch';
 import { faker } from '@faker-js/faker';
-import Logo from '../../assets/Images/logo.ico';
+import talkLogo from '../../assets/Images/Talk-logo-transparent.png';
+
 import { Gear } from 'phosphor-react';
 
 export const Sidebar = () => {
   const theme = useTheme();
   const [selected, setSelected] = useState(0);
   const { onToggleMode } = useSettings();
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <Box
       p={2}
@@ -32,13 +51,13 @@ export const Sidebar = () => {
         <Stack alignItems={'center'} spacing={4}>
           <Box
             sx={{
-              backgroundColor: theme.palette.primary.main,
+              backgroundColor: theme.palette.primary.light,
               height: 64,
               width: 64,
               borderRadius: 1.5,
             }}
           >
-            <img src={Logo} alt="logo" />
+            <img src={talkLogo} alt="logo" />
           </Box>
           <Stack
             spacing={3}
@@ -120,9 +139,88 @@ export const Sidebar = () => {
             }}
             defaultChecked
           />
-          <Avatar src={faker.image.avatar()} />
+          <Avatar
+            id="positioned-button"
+            aria-controls={open ? 'positioned-button' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
+            src={faker.image.avatar()}
+          />
+          <Menu
+            id="positioned-button"
+            aria-labelledby="positioned-button"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'bottom',
+              horizontal: 'left',
+            }}
+          >
+            <Stack spacing={1} px={1}>
+              {Profile_Menu.map((el) => (
+                <MenuItem onClick={handleClick}>
+                  <Stack
+                    sx={{ width: 100 }}
+                    direction="row"
+                    alignItems={'center'}
+                    justifyContent={'space-between'}
+                  >
+                    <span>{el.title}</span>
+                    {el.icon}
+                  </Stack>
+                </MenuItem>
+              ))}
+            </Stack>
+          </Menu>
         </Stack>
       </Stack>
     </Box>
   );
 };
+
+/*
+
+const MessageOptions = () => {
+  
+  return (
+    <>
+      <IconButton
+        id="positioned-button"
+        
+      >
+        <DotsThreeVertical />
+      </IconButton>
+      <Menu
+        id="positioned-button"
+        aria-labelledby="positioned-button"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+      >
+        <Stack spacing={1} px={1}>
+          {Message_options.map((el) => (
+            <MenuItem onClick={handleClick}>{el.title}</MenuItem>
+          ))}
+        </Stack>
+      </Menu>
+    </>
+  );
+};
+
+
+
+*/

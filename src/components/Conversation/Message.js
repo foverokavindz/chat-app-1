@@ -23,7 +23,7 @@ const Message = () => {
                 case 'img':
                   return <MediaMsg el={el} />;
                 case 'doc':
-                  break;
+                  return <DocMsg el={el} />;
                 case 'link':
                   return <LinkMsg el={el} />;
                 case 'reply':
@@ -32,7 +32,6 @@ const Message = () => {
                   return <TextMsg el={el} />;
               }
 
-              break;
             default:
               return <></>;
           }
