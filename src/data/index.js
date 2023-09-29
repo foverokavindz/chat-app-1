@@ -220,6 +220,69 @@ const Message_options = [
   },
 ];
 
+const SHARED_LINKS = [
+  {
+    type: 'msg',
+    subtype: 'link',
+    preview: faker.image.cats(),
+    message: 'Hi 👋🏻, How are ya ?',
+    incoming: true,
+    outgoing: false,
+  },
+  {
+    type: 'msg',
+    subtype: 'link',
+    preview: faker.image.cats(),
+    message: 'Hi 👋🏻, How are ya ?',
+    incoming: true,
+    outgoing: false,
+  },
+  {
+    type: 'msg',
+    subtype: 'link',
+    preview: faker.image.cats(),
+    message: 'Hi 👋🏻, How are ya ?',
+    incoming: true,
+    outgoing: false,
+  },
+  {
+    type: 'msg',
+    subtype: 'link',
+    preview: faker.image.cats(),
+    message: 'Hi 👋🏻, How are ya ?',
+    incoming: true,
+    outgoing: false,
+  },
+];
+const SHARED_DOCS = [
+  {
+    type: 'msg',
+    subtype: 'link',
+    preview: faker.image.cats(),
+    message: 'Hi 👋🏻, How are ya ?',
+    incoming: true,
+    outgoing: false,
+  },
+
+  {
+    type: 'msg',
+    subtype: 'link',
+    preview: faker.image.cats(),
+    message: 'Hi 👋🏻, How are ya ?',
+    incoming: true,
+    outgoing: false,
+  },
+
+  {
+    type: 'msg',
+    subtype: 'link',
+    preview: faker.image.cats(),
+    message: 'Hi 👋🏻, How are ya ?',
+    incoming: true,
+    outgoing: false,
+  },
+];
+
 export {
   Profile_Menu,
   Nav_Setting,
@@ -227,4 +290,6 @@ export {
   ChatList,
   Chat_History,
   Message_options,
+  SHARED_DOCS,
+  SHARED_LINKS,
 };

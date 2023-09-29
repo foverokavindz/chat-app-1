@@ -25,7 +25,7 @@ const Conversation = () => {
           }}
           overflow={'auto'}
         >
-          <Message />
+          <Message menu={true} />
         </Box>
         {/* Chat Footer */}
         <Footer />

@@ -5,7 +5,7 @@ import { dispatch } from '../store';
 
 const initialState = {
   sidebar: {
-    open: true,
+    open: false,
     type: 'CONTACT', // can be contact, stated,shared
   },
 };
