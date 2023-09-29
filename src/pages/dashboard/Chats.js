@@ -142,7 +142,7 @@ export const Chats = () => {
           alignItems={'center'}
           justifyContent="space-between"
         >
-          <Typography variant="h5" sx={{ fontWeight: 900 }}>
+          <Typography variant="h5" fontStyle={'normal'} fontWeight={900}>
             Chats
           </Typography>
           <IconButton>
