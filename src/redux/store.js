@@ -1,6 +1,5 @@
 // make our code cleaner and easy to understand
 import { configureStore } from '@reduxjs/toolkit'; // Note the corrected import path
-
 import {
   useDispatch as useAppDispatch,
   useSelector as useAppSelector,
@@ -20,6 +19,8 @@ const store = configureStore({
 const persistor = persistStore(store); // we pass our orginal store to this and this will give us modified store
 
 const { dispatch } = store;
+
+console.log('store', store);
 
 const useSelector = useAppSelector;
 const useDispatch = () => useAppDispatch();
