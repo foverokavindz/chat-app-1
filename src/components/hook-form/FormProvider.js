@@ -1,10 +1,10 @@
 import React from 'react';
 import { FormProvider as Form } from 'react-hook-form';
 
-const FormProvider = ({ childern, onSubmit, methods }) => {
+const FormProvider = ({ children, onSubmit, methods }) => {
   return (
     <Form {...methods}>
-      <form onSubmit={onSubmit}>{childern}</form>
+      <form onSubmit={onSubmit}>{children}</form>
     </Form>
   );
 };

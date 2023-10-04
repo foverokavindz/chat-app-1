@@ -20,7 +20,7 @@ const Loadable = (Component) => (props) => {
 export default function Router() {
   return useRoutes([
     {
-      path: '/',
+      path: '/auth',
       element: <MainLayout />,
       children: [{ element: <LoginPage />, path: 'login' }],
     },
