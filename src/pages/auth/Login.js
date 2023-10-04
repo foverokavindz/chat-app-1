@@ -6,8 +6,17 @@ import LoginForm from '../../sections/auth/LoginForm';
 
 const Login = () => {
   return (
-    <Stack spacing={2} sx={{ mb: 5, position: 'relative' }}>
-      <Typography variant="h6">Login to .Talk</Typography>
+    <Stack
+      spacing={2}
+      p={5}
+      sx={{
+        mb: 5,
+        position: 'relative',
+        boxShadow: '0px 8px 30px -8px rgba(0, 0, 0, 0.1)',
+        borderRadius: 3,
+      }}
+    >
+      <Typography variant="h6">Login here</Typography>
 
       <Stack direction={'row'} spacing={0.5}>
         <Typography variant="body2">New user? </Typography>
@@ -18,8 +27,9 @@ const Login = () => {
 
       {/**Login form */}
       <LoginForm />
-      <AuthSocial />
+
       {/**auth social */}
+      <AuthSocial />
     </Stack>
   );
 };

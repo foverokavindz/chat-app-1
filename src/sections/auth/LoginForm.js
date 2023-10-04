@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import { RHFTextField } from '../../components/hook-form';
 import { Eye, EyeSlash } from 'phosphor-react';
+import { Link as RouterLink } from 'react-router-dom';
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -57,13 +58,14 @@ const LoginForm = () => {
         {!!errors.afterSubmit && (
           <Alert severity="error">{errors.afterSubmit.message}</Alert>
         )}
+
         <RHFTextField name="email" label="Email address" />
         <RHFTextField
           name="password"
           label="Password"
           type={showPassword ? 'text' : 'password'}
           InputProps={{
-            endAdorment: (
+            endAdornment: (
               <InputAdornment
                 onClick={() => {
                   setShowPassword(!showPassword);
@@ -77,8 +79,19 @@ const LoginForm = () => {
       </Stack>
 
       <Stack alignItems={'flex-end'} sx={{ my: 2 }}>
-        <Link variant="body2" color={'inherit'} underline="always">
-          Forgot Password
+        <Link
+          variant="body2"
+          to="/"
+          component={RouterLink}
+          underline="always"
+          sx={{
+            '&:hover': {
+              color: (theme) =>
+                theme.palette.mode === 'light' ? '#454545' : 'grey.800',
+            },
+          }}
+        >
+          Forgot password?
         </Link>
       </Stack>
       <Button
@@ -92,10 +105,12 @@ const LoginForm = () => {
           color: (theme) =>
             theme.palette.mode === 'light' ? 'common.white' : 'grey.800',
 
-          '&hover': {
-            bgcolor: 'text.primary',
+          '&:hover': {
+            bgcolor: '#54545400',
+            border: 'solid 3px #545454',
+
             color: (theme) =>
-              theme.palette.mode === 'light' ? 'common.white' : 'grey.800',
+              theme.palette.mode === 'light' ? '#545454' : 'grey.800',
           },
         }}
       >
