@@ -6,7 +6,16 @@ import AuthSocial from '../../sections/auth/AuthSocial';
 
 const Register = () => {
   return (
-    <Stack spacing={2} sx={{ mb: 5, position: 'relative' }}>
+    <Stack
+      spacing={2}
+      p={5}
+      sx={{
+        mb: 5,
+        position: 'relative',
+        boxShadow: '0px 8px 30px -8px rgba(0, 0, 0, 0.1)',
+        borderRadius: 3,
+      }}
+    >
       <Typography variant="h6">Get started with DotTalk</Typography>
 
       <Stack direction={'row'} spacing={0.5}>
