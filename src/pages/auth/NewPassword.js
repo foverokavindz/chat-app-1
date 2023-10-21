@@ -24,27 +24,26 @@ const NewPassword = () => {
         <Typography sx={{ color: 'text.secondary', mb: 5 }}>
           Please set your new password
         </Typography>
+        {/**new password form */}
+
+        <NewPasswordForm />
+
+        <Link
+          component={RouterLink}
+          to={'/auth/login'}
+          color="inherit"
+          variant="subtitle2"
+          sx={{
+            mt: 3,
+            mx: 'auto',
+            alignItems: 'center',
+            display: 'inline-flex',
+          }}
+        >
+          <CaretLeft />
+          Return to sign in
+        </Link>
       </Stack>
-
-      {/**new password form */}
-
-      <NewPasswordForm />
-
-      <Link
-        component={RouterLink}
-        to={'/auth/login'}
-        color="inherit"
-        variant="subtitle2"
-        sx={{
-          mt: 3,
-          mx: 'auto',
-          alignItems: 'center',
-          display: 'inline-flex',
-        }}
-      >
-        <CaretLeft />
-        Return to sign in
-      </Link>
     </>
   );
 };
