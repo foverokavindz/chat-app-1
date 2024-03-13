@@ -58,6 +58,7 @@
     ]
   },
   "devDependencies": {
-    "@faker-js/faker": "^7.5.0"
+    "@faker-js/faker": "^7.5.0",
+    "visualize-react-component": "^1.0.43"
   }
 }

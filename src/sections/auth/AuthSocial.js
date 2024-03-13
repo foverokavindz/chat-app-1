@@ -34,3 +34,5 @@ const AuthSocial = () => {
 };
 
 export default AuthSocial;
+
+// social logins in login form

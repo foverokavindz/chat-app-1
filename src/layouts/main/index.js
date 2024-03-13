@@ -28,3 +28,5 @@ const MainLayout = () => {
 };
 
 export default MainLayout;
+
+// main screen
