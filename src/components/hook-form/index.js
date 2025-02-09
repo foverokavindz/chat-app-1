@@ -1,2 +1,5 @@
-export { default } from './FormProvider';
-export { default as RHFTextField } from './RHFTextField';
+import FormProvider from './FormProvider';
+import RHFTextField from './RHFTextField';
+import RHFAutoComplete from './RHFAutoComplete';
+
+export { FormProvider, RHFTextField, RHFAutoComplete };
