@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
 import {
+  Search,
+  SearchIconWrapper,
+  StyledInputBase,
+} from '../../components/Search';
+import { MagnifyingGlass, Plus } from 'phosphor-react';
+import { Link } from 'react-router-dom';
+import { CallLogs, ChatList } from '../../data';
+import { SimpleBarStyle } from '../../components/Scrollbar';
+import ChatElement from '../../components/ChatElement';
+import CreateGroup from '../../sections/main/CreateGroup';
+import {
   Box,
   Divider,
   IconButton,
@@ -7,26 +18,16 @@ import {
   Typography,
   useTheme,
 } from '@mui/material';
-import {
-  Search,
-  SearchIconWrapper,
-  StyledInputBase,
-} from '../../components/Search';
-import { MagnifyingGlass, Plus } from 'phosphor-react';
-import { Link } from 'react-router-dom';
-import { ChatList } from '../../data';
-import { SimpleBarStyle } from '../../components/Scrollbar';
-import ChatElement from '../../components/ChatElement';
-import CreateGroup from '../../sections/main/CreateGroup';
+import { CallElement, CallLogElement } from '../../components/CallElement';
+import StartCall from '../../sections/main/StartCall';
 
-const Group = () => {
+const Call = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const theme = useTheme();
 
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
-
   return (
     <>
       <Stack direction={'row '} sx={{ width: '100%' }}>
@@ -49,7 +50,7 @@ const Group = () => {
             sx={{ maxHeight: '100vh' }}
           >
             <Stack>
-              <Typography variant="h5">Groups</Typography>
+              <Typography variant="h5">Call Logs</Typography>
             </Stack>
             <Stack sx={{ width: '100%' }}>
               <Search>
@@ -77,7 +78,7 @@ const Group = () => {
                   fontWeight: 700,
                 }}
               >
-                Create new group
+                Start new call
               </Typography>
               <IconButton onClick={() => setOpenDialog(true)}>
                 <Plus style={{ color: theme.palette.primary.main }} />
@@ -90,23 +91,14 @@ const Group = () => {
               sx={{ flexGrow: 1, overflow: 'auto', height: '100%' }}
             >
               <SimpleBarStyle timeout={200} clickOnTrack={false}>
-                <Stack spacing={2.5}>
-                  <Typography variant="subtitle2" sx={{ color: '#676767' }}>
-                    Pinned
-                  </Typography>
-
-                  {ChatList.filter((el) => el.pinned).map((el) => {
-                    return <ChatElement {...el} />;
-                  })}
-                </Stack>
-                <br />
                 <Stack spacing={1.5}>
                   <Typography variant="subtitle2" sx={{ color: '#676767' }}>
-                    All chats
+                    All Calls
                   </Typography>
+                  {/* call logs */}
 
-                  {ChatList.filter((el) => !el.pinned).map((el) => {
-                    return <ChatElement {...el} />;
+                  {CallLogs.map((el) => {
+                    return <CallElement {...el} />;
                   })}
                 </Stack>
               </SimpleBarStyle>
@@ -118,10 +110,10 @@ const Group = () => {
         {/* TODO reuse Chat Component */}
       </Stack>
       {openDialog && (
-        <CreateGroup open={openDialog} handleClose={handleCloseDialog} />
+        <StartCall open={openDialog} handleClose={handleCloseDialog} />
       )}
     </>
   );
 };
 
-export default Group;
+export default Call;

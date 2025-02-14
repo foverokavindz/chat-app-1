@@ -1,9 +1,15 @@
 import { Container, Stack } from '@mui/material';
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import talkLogo from '../../assets/Images/Talk-logo-transparent.png';
 
+const isAuthenticated = true;
+
 const MainLayout = () => {
+  if (isAuthenticated) {
+    return <Navigate to="/app" />;
+  }
+
   return (
     <>
       <Container sx={{ mt: 5 }} maxWidth="sm">

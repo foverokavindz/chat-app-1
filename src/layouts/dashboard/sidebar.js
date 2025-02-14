@@ -16,11 +16,42 @@ import { faker } from '@faker-js/faker';
 import talkLogo from '../../assets/Images/Talk-logo-transparent.png';
 
 import { Gear } from 'phosphor-react';
+import { useNavigate } from 'react-router-dom';
+
+const getRoutePath = (index) => {
+  switch (index) {
+    case 0:
+      return '/app';
+    case 1:
+      return '/group';
+    case 2:
+      return '/call';
+    case 3:
+      return '/settings';
+    default:
+      return '/app';
+  }
+};
+
+const getMenuPath = (index) => {
+  switch (index) {
+    case 0:
+      return '/profile';
+    case 1:
+      return '/settings';
+    case 2:
+      //TODO : update token, set isAuthenticated to false
+      return '/auth/login';
+    default:
+      return '/profile';
+  }
+};
 
 export const Sidebar = () => {
   const theme = useTheme();
   const [selected, setSelected] = useState(0);
   const { onToggleMode } = useSettings();
+  const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -85,6 +116,7 @@ export const Sidebar = () => {
                 <IconButton
                   onClick={() => {
                     setSelected(el.index);
+                    navigate(getRoutePath(el.index));
                   }}
                   sx={{
                     width: 'max-content',
@@ -118,6 +150,7 @@ export const Sidebar = () => {
               <IconButton
                 onClick={() => {
                   setSelected(3);
+                  navigate(getRoutePath(3));
                 }}
                 sx={{
                   width: 'max-content',
@@ -163,13 +196,14 @@ export const Sidebar = () => {
             }}
           >
             <Stack spacing={1} px={1}>
-              {Profile_Menu.map((el) => (
+              {Profile_Menu.map((el, idx) => (
                 <MenuItem onClick={handleClick}>
                   <Stack
                     sx={{ width: 100 }}
                     direction="row"
                     alignItems={'center'}
                     justifyContent={'space-between'}
+                    onClick={() => navigate(getMenuPath(idx))}
                   >
                     <span>{el.title}</span>
                     {el.icon}
