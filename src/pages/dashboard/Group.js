@@ -90,7 +90,7 @@ const Group = () => {
               sx={{ flexGrow: 1, overflow: 'auto', height: '100%' }}
             >
               <SimpleBarStyle timeout={200} clickOnTrack={false}>
-                <Stack spacing={1.5}>
+                <Stack spacing={2.5}>
                   <Typography variant="subtitle2" sx={{ color: '#676767' }}>
                     Pinned
                   </Typography>
