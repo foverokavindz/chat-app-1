@@ -14,8 +14,11 @@ import {
 import { RHFTextField } from '../../components/hook-form';
 import { Eye, EyeSlash } from 'phosphor-react';
 import { Link as RouterLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { LoginUser } from '../../redux/slices/auth';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   // use Yup - famouse validator
   const LoginSchema = Yup.object().shape({
@@ -26,8 +29,8 @@ const LoginForm = () => {
   });
 
   const defaultValues = {
-    email: 'demo@talk.com',
-    password: 'demo1234',
+    email: 'kavindamadhuranga74.2@gmail.com',
+    password: '1234',
   };
 
   const methods = useForm({
@@ -45,6 +48,7 @@ const LoginForm = () => {
   const onSubmit = async (data) => {
     try {
       // submit data to backend
+      dispatch(LoginUser(data));
     } catch (error) {
       console.log('error', error);
       reset();

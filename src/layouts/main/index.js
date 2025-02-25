@@ -2,11 +2,11 @@ import { Container, Stack } from '@mui/material';
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import talkLogo from '../../assets/Images/Talk-logo-transparent.png';
-
-const isAuthenticated = true;
+import { useSelector } from 'react-redux';
 
 const MainLayout = () => {
-  if (isAuthenticated) {
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  if (isLoggedIn) {
     return <Navigate to="/app" />;
   }
 
