@@ -23,6 +23,8 @@
   "include": ["src/**/*", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "build", "dist"],
   "overrides": {
-    "typescript": "4.9.5"
+    "tsutils": {
+      "typescript": "$typescript"
+    }
   }
 }
