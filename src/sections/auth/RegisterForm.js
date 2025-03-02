@@ -12,9 +12,12 @@ import {
 } from '@mui/material';
 import { RHFTextField } from '../../components/hook-form';
 import { Eye, EyeSlash } from 'phosphor-react';
+import { useDispatch } from 'react-redux';
+import { RegisterUser } from '../../redux/slices/auth';
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
 
   // use Yup - famouse validator
   const RegisterSchema = Yup.object().shape({
@@ -28,7 +31,7 @@ const RegisterForm = () => {
 
   const defaultValues = {
     firstName: '',
-    lastname: '',
+    lastName: '',
     email: 'demo@talk.com',
     password: 'demo1234',
   };
@@ -49,6 +52,7 @@ const RegisterForm = () => {
   const onSubmit = async (data) => {
     try {
       // submit data to backend
+      dispatch(RegisterUser(data));
     } catch (error) {
       console.log('error', error);
       reset();
@@ -65,10 +69,9 @@ const RegisterForm = () => {
         {!!errors.afterSubmit && (
           <Alert severity="error">{errors.afterSubmit.message}</Alert>
         )}
-
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-          <RHFTextField name={'firstname'} label="First Name" />
-          <RHFTextField name={'lastname'} label="Last Name" />
+          <RHFTextField name={'firstName'} label="First Name" />
+          <RHFTextField name={'lastName'} label="Last Name" />
         </Stack>
         <RHFTextField name={'email'} label="Email" />
         <RHFTextField
