@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 // need dispatch here to dispatch action here
-import { dispatch } from '../store';
+// import { dispatch } from '../store';
 
 const initialState = {
   sidebar: {
@@ -31,26 +31,24 @@ export default slice.reducer;
 // thunk functions
 
 export function ToggleSidebar() {
-  //   return async () => {
-  //     dispatch(slice.actions.toggleSidebar());
-  //   };
-
-  try {
-    // Perform asynchronous operations here
-    // For example, you can make an API call using axios or fetch
-    // const response = await fetch('your-api-endpoint');
-    // const data = await response.json();
-
-    // After the async operation is complete, dispatch the action
+  return async (dispatch, getState) => {
     dispatch(slice.actions.toggleSidebar());
-  } catch (error) {
-    // Handle any errors here
-    console.error('An error occurred:', error);
-  }
+  };
+  // try {
+  //   // Perform asynchronous operations here
+  //   // For example, you can make an API call using axios or fetch
+  //   // const response = await fetch('your-api-endpoint');
+  //   // const data = await response.json();
+  //   // After the async operation is complete, dispatch the action
+  //   dispatch(slice.actions.toggleSidebar());
+  // } catch (error) {
+  //   // Handle any errors here
+  //   console.error('An error occurred:', error);
+  // }
 }
 
 export function UpdateSidebarType(type) {
-  return async () => {
+  return async (dispatch, getState) => {
     dispatch(
       slice.actions.updateSidebarType({
         type,

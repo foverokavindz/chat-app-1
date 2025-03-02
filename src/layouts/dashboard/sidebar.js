@@ -17,6 +17,8 @@ import talkLogo from '../../assets/Images/Talk-logo-transparent.png';
 
 import { Gear } from 'phosphor-react';
 import { useNavigate } from 'react-router-dom';
+import { LogoutUser } from '../../redux/slices/auth';
+import { useDispatch } from 'react-redux';
 
 const getRoutePath = (index) => {
   switch (index) {
@@ -48,6 +50,7 @@ const getMenuPath = (index) => {
 };
 
 export const Sidebar = () => {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const [selected, setSelected] = useState(0);
   const { onToggleMode } = useSettings();
@@ -197,13 +200,23 @@ export const Sidebar = () => {
           >
             <Stack spacing={1} px={1}>
               {Profile_Menu.map((el, idx) => (
-                <MenuItem onClick={handleClick}>
+                <MenuItem
+                  onClick={() => {
+                    handleClick();
+                  }}
+                >
                   <Stack
                     sx={{ width: 100 }}
                     direction="row"
                     alignItems={'center'}
                     justifyContent={'space-between'}
-                    onClick={() => navigate(getMenuPath(idx))}
+                    onClick={() => {
+                      if (idx === 2) {
+                        dispatch(LogoutUser());
+                      } else {
+                        navigate(getMenuPath(idx));
+                      }
+                    }}
                   >
                     <span>{el.title}</span>
                     {el.icon}
