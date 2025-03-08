@@ -8,6 +8,11 @@ const initialState = {
     open: false,
     type: 'CONTACT', // can be contact, stated,shared
   },
+  snackbar: {
+    open: false,
+    message: '',
+    severity: 'info',
+  },
 };
 
 const slice = createSlice({
@@ -21,6 +26,16 @@ const slice = createSlice({
     }, // state is now state, action contains payload and action type
     updateSidebarType(state, action) {
       state.sidebar.type = action.payload.type;
+    },
+    openSnackbar(state, action) {
+      state.snackbar.open = true;
+      state.snackbar.message = action.payload.message;
+      state.snackbar.severity = action.payload.severity;
+    },
+    closeSnackbar(state, action) {
+      state.snackbar.open = false;
+      state.snackbar.message = '';
+      state.snackbar.severity = 'info';
     },
   },
 });
@@ -54,5 +69,25 @@ export function UpdateSidebarType(type) {
         type,
       })
     );
+  };
+}
+
+export function ShowSnackbar({ severity, message }) {
+  return async (dispatch, getState) => {
+    dispatch(
+      slice.actions.openSnackbar({
+        severity,
+        message,
+      })
+    );
+    setTimeout(() => {
+      dispatch(slice.actions.closeSnackbar());
+    }, 3000);
+  };
+}
+
+export function CloseSnackbar() {
+  return async (dispatch, getState) => {
+    dispatch(slice.actions.closeSnackbar());
   };
 }
