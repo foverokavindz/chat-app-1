@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axiosInstance from '../../utils/axios';
+import { ShowSnackbar } from './app';
 
 const initialState = {
   isLoggedIn: false,
@@ -60,10 +61,14 @@ export function LoginUser(formValues) {
             token: response.data.token,
           })
         );
+        dispatch(
+          ShowSnackbar({ message: response.data.message, severity: 'success' })
+        );
       })
       .catch(function (error) {
         // handle error
         console.log(error);
+        dispatch(ShowSnackbar({ message: error.message, severity: 'error' }));
       });
   };
 }
