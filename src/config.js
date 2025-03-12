@@ -58,7 +58,8 @@ export const allLangs = [
 
 export const defaultLang = allLangs[0]; // English
 
-export const BASE_URL = 'http://localhost:3005';
+//export const BASE_URL = 'http://localhost:3005';
+export const BASE_URL = 'https://dot-talk-api.vercel.app';
 
 export const IS_AUTHENTICATED = false;
 // DEFAULT ROOT PATH
